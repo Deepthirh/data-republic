@@ -1,24 +1,16 @@
 package com.datarepublic.factory.driver;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeDriver extends AbstractDriver {
 
-    private final DesiredCapabilities capabilities;
-
     public ChromeDriver() {
-        capabilities = DesiredCapabilities.chrome();
-    }
-
-    @Override
-    public Capabilities getCapabilities() {
-        return capabilities;
+        setDriverExecutable("webdriver.chrome.driver", "chrome", "chromedriver");
     }
 
     @Override
     protected WebDriver getWebDriverInner() {
-        return new org.openqa.selenium.chrome.ChromeDriver();
+        return new org.openqa.selenium.chrome.ChromeDriver(new ChromeOptions());
     }
 }
