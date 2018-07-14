@@ -14,6 +14,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class EBayShoppingCartStepDefinition {
 
@@ -24,21 +25,33 @@ public class EBayShoppingCartStepDefinition {
     private ItemPage itemPage;
     private ShoppingCartPage shoppingCartPage;
 
+    private String propertyUsed;
+
     @Before
-    public void beforeScenario() {
-        String browserName = System.getProperty("browserName", "chrome");
-        Optional<Driver> optionalDriver = DriverFactory.getInstance().getDriver(browserName);
-        driver = optionalDriver.orElseThrow(() -> new IllegalArgumentException("Could not find driver for " + browserName)).getWebDriver();
+    public void i_run_the_test_in() {
+        propertyUsed = System.getProperty("data.republic.firefox");
+        AtomicReference<String> browserName = new AtomicReference<>("chrome");
+        synchronized (propertyUsed) {
+            while ("not-used".equals((propertyUsed = System.getProperty("data.republic.firefox")))) {
+                System.out.println(propertyUsed);
+                propertyUsed = "used";
+                System.setProperty("data.republic.firefox", propertyUsed);
+                browserName.set("firefox");
+            }
+        }
+        System.out.println("browserName: " + browserName);
+        Optional<Driver> optionalDriver = DriverFactory.getInstance().getDriver(browserName.get());
+        driver = optionalDriver.orElseThrow(() -> new IllegalArgumentException("Could not find driver for " + browserName.get())).getWebDriver();
     }
 
     @Given("^I go to eBay website$")
     public void i_go_to_eBay_website() {
         driver.get("https://www.ebay.com.au/");
-        eBayHomePage = new EBayHomePage(driver);
     }
 
     @When("^I search for \"([^\"]*)\"$")
     public void i_search_for(String searchText) {
+        eBayHomePage = new EBayHomePage(driver);
         eBayHomePage.searchFor(searchText);
     }
 
@@ -82,7 +95,6 @@ public class EBayShoppingCartStepDefinition {
 
     @After
     public void afterScenario() {
-        driver.close();
         driver.quit();
     }
 }

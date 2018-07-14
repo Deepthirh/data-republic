@@ -20,9 +20,7 @@ public class SearchResultPage {
 
     public void selectFirstResult() {
         filterBrandNew.click();
-        WebElement resultElement = driver.findElement(By.cssSelector("#srp-river-results-listing1>div:nth-child(1)>div:nth-child(1)"));
-        System.out.println(resultElement);
-        resultElement.click();
+        driver.findElement(By.cssSelector("#srp-river-results-listing1>div:nth-child(1)>div:nth-child(1)")).click();
     }
 
 }

@@ -9,11 +9,11 @@ import java.util.List;
 
 public class ItemPage {
 
-    @FindBy(css = "a#isCartBtn_btn")
-    private WebElement addToCart;
-
     @FindBy(css = "h1#itemTitle")
     private WebElement itemTextElement;
+
+    @FindBy(css = "a#isCartBtn_btn")
+    private WebElement addToCart;
 
     @FindBy(css = "div.adndesc.addon-overlay-body")
     private WebElement addOnOverlay;

@@ -1,7 +1,6 @@
 package com.datarepublic.factory.driver;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class FirefoxDriver extends AbstractDriver {
@@ -15,6 +14,6 @@ public class FirefoxDriver extends AbstractDriver {
 
     @Override
     protected WebDriver getWebDriverInner() {
-        return new org.openqa.selenium.firefox.FirefoxDriver(new FirefoxOptions());
+        return new org.openqa.selenium.firefox.FirefoxDriver();
     }
 }

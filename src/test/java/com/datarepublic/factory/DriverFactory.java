@@ -24,7 +24,7 @@ public class DriverFactory {
 
         DriverType driverType;
         try {
-            driverType = DriverType.valueOf(browserName.toUpperCase());
+            driverType = DriverType.valueOf(browserName.trim().toUpperCase());
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return Optional.empty();
