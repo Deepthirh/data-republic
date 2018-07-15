@@ -6,7 +6,7 @@ Data Republic Test Assessment
 A chrome driver and firefox gecko driver for mac and windows platforms are present under `src/test/resources/driver` folder
 
 #### This is a maven project
-To run this test, please make sure maven is present on appropriate system and `mvn` is added to system's path
+To run this test, please make sure maven is present on an appropriate system and `mvn` is added to system's path
 
 ```mvn clean install```
 

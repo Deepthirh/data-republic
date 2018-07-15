@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class ItemPage {
 
     public void addToCart() {
         itemText = itemTextElement.getText();
+
+        Assert.assertTrue(addToCart.isDisplayed());
+
         addToCart.click();
         if (addOnOverlay.isDisplayed()) {
             noThanksButtons.get(1).click();
