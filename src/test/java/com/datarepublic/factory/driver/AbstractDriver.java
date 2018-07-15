@@ -14,7 +14,7 @@ public abstract class AbstractDriver implements Driver {
     @Override
     public WebDriver getWebDriver() {
         WebDriver driver = getWebDriverInner();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         return driver;
     }
