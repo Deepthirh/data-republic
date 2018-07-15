@@ -8,7 +8,6 @@ import org.testng.annotations.Parameters;
 @CucumberOptions(
         plugin = {
                 "pretty",
-                "html:target/cucumberHtmlReport",     //  for html result
                 "json:target/cucumber-json-report.json"   // for json result
         },
         features = "src/test/resources/features/ebay-shopping-cart.feature")

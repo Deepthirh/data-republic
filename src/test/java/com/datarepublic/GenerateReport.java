@@ -11,7 +11,7 @@ public class GenerateReport {
 
     public static void GenerateMasterthoughtReport() {
         try {
-            File reportOutputDirectory = new File("target/Masterthought");
+            File reportOutputDirectory = new File("target");
             List<String> jsonFiles = new ArrayList<String>();
             jsonFiles.add("target/cucumber-json-report.json");
             String buildProject = "data-republic";
